@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KDS Cozinha ao Vivo • Camada Santo Tirso</title>
+  <meta name="description" content="Ecrã da cozinha (KDS) em tempo real para o Camada Santo Tirso. Receção instantânea de pedidos, gestão de tempos e alertas sonoros.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>👨‍🍳</text></svg>">
+</head>
+<body style="background:#090b0e">
+
+  <!-- Top System Navigation Bar -->
+  <header class="system-nav-bar">
+    <a href="kds.html" class="brand-wrapper">
+      <div class="brand-badge" style="background:linear-gradient(135deg, #ea580c, #c2410c);color:#fff">KDS</div>
+      <div class="brand-info">
+        <span class="brand-title">Cozinha Camada</span>
+        <span class="brand-city">Ecrã em Tempo Real • Santo Tirso</span>
+      </div>
+    </a>
+
+    <!-- View Mode Switcher -->
+    <nav class="view-switcher" aria-label="Modo de Visualização">
+      <a href="index.html" class="view-btn" title="Menu do Cliente">
+        <span>📱 Menu</span>
+      </a>
+      <a href="kds.html" class="view-btn active" title="Ecrã da Cozinha">
+        <span>🍳 Cozinha</span>
+      </a>
+      <a href="qrcodes.html" class="view-btn" title="Gerar QR Codes">
+        <span>🖨️ QR Codes</span>
+      </a>
+      <a href="admin.html" class="view-btn" title="Backoffice & Gestão">
+        <span>📊 Gestão</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="kds-container">
+
+    <!-- Service Call Alerts (Waiters / Accounts) -->
+    <div id="serviceAlertsContainer"></div>
+
+    <!-- KDS Top Metrics & Controls Bar -->
+    <div class="kds-top-bar">
+      <!-- Live counters -->
+      <div class="kds-stats-group">
+        <div class="kds-stat-item">
+          <span class="kds-stat-label">Pedidos Ativos</span>
+          <span class="kds-stat-val" id="kdsTotalActive" style="color:var(--primary)">0</span>
+        </div>
+        <div class="kds-stat-item">
+          <span class="kds-stat-label">Pendentes</span>
+          <span class="kds-stat-val" id="kdsPendentesCount" style="color:#fbbf24">0</span>
+        </div>
+        <div class="kds-stat-item">
+          <span class="kds-stat-label">No Forno</span>
+          <span class="kds-stat-val" id="kdsPreparandoCount" style="color:#fb923c">0</span>
+        </div>
+        <div class="kds-stat-item">
+          <span class="kds-stat-label">Prontos a Servir</span>
+          <span class="kds-stat-val" id="kdsProntosCount" style="color:#34d399">0</span>
+        </div>
+      </div>
+
+      <!-- Action Tools -->
+      <div class="kds-controls">
+        <button class="sound-toggle-btn active" id="soundToggleBtn" title="Ativar ou desativar som de campainha de cozinha">
+          🔔 Som Ativado
+        </button>
+
+        <button class="btn-secondary-sm" id="createTestOrderBtn" title="Simular um pedido de teste vindo da sala">
+          <span>+</span> Pedido Teste
+        </button>
+
+        <button class="btn-secondary-sm" id="fullscreenToggleBtn" title="Alternar ecrã inteiro">
+          <span>⛶</span> Ecrã Inteiro
+        </button>
+
+        <button class="btn-secondary-sm" id="clearCompletedOrdersBtn" title="Limpar pedidos já entregues">
+          <span>🧹</span> Limpar Entregues
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Buttons Bar -->
+    <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem;overflow-x:auto;padding-bottom:4px">
+      <button class="category-pill active kds-filter-btn" data-filter="active">
+        Todos os Ativos
+      </button>
+      <button class="category-pill kds-filter-btn" data-filter="pendente">
+        🟡 Só Pendentes
+      </button>
+      <button class="category-pill kds-filter-btn" data-filter="preparando">
+        🟠 Em Preparação
+      </button>
+      <button class="category-pill kds-filter-btn" data-filter="pronto">
+        🟢 Prontos a Servir
+      </button>
+      <button class="category-pill kds-filter-btn" data-filter="todos">
+        📋 Histórico Completo
+      </button>
+    </div>
+
+    <!-- Real-time Orders Grid -->
+    <div class="kds-grid" id="kdsOrdersGrid"></div>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/kds.js"></script>
+
+</body>
+</html>

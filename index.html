@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAMADA Santo Tirso • Portal do Sistema</title>
+  <meta name="description" content="Portal do Menu Digital e Sistema de Cozinha do Restaurante Camada Santo Tirso.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🥪</text></svg>">
+  <script>
+    // Redirecionamento automático se vier de um QR Code com mesa identificada
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('mesa')) {
+      window.location.replace('menu.html' + window.location.search);
+    }
+  </script>
+  <style>
+    .hub-container {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem 3rem 1.25rem;
+    }
+    .hub-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .hub-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .hub-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .hub-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--primary-glow);
+    }
+    .hub-card-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+    .hub-card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .hub-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 1.5rem;
+    }
+    .hub-card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top System Navigation Bar -->
+  <header class="system-nav-bar">
+    <div class="brand-wrapper">
+      <div class="brand-badge">C</div>
+      <div class="brand-info">
+        <span class="brand-title">Camada</span>
+        <span class="brand-city">Santo Tirso • Sistema Integrado</span>
+      </div>
+    </div>
+
+    <nav class="view-switcher">
+      <a href="menu.html" class="view-btn">📱 Menu Cliente</a>
+      <a href="cozinha.html" class="view-btn">👨‍🍳 Cozinha (KDS)</a>
+      <a href="qrcodes.html" class="view-btn">🖨️ QR Codes</a>
+      <a href="admin.html" class="view-btn">📊 Gestão</a>
+    </nav>
+  </header>
+
+  <main class="hub-container">
+    <div class="hub-header">
+      <div style="display:inline-block;background:rgba(245, 158, 11, 0.12);color:var(--primary);font-size:0.8rem;font-weight:800;padding:4px 14px;border-radius:var(--radius-full);border:1px solid rgba(245, 158, 11, 0.3);text-transform:uppercase;margin-bottom:0.75rem">
+        Restaurante Camada • Santo Tirso
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:2.2rem;font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:0.5rem">
+        Menu Digital & Sistema de Cozinha
+      </h1>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:600px;margin:0 auto">
+        Selecione o módulo pretendido para abrir no ecrã da sala, dos clientes ou no tablet da cozinha.
+      </p>
+    </div>
+
+    <div class="hub-cards-grid">
+
+      <!-- Card 1: Site do Cliente (Menu Digital) -->
+      <a href="menu.html?mesa=1" class="hub-card" style="border-top:4px solid var(--primary)">
+        <div>
+          <div class="hub-card-icon">📱</div>
+          <h2 class="hub-card-title">1. Site do Cliente (Menu Digital)</h2>
+          <p class="hub-card-desc">
+            O site para onde os clientes vão ao ler o QR Code da mesa. Permite consultar a ementa de Francesinhas, personalizar ingredientes e fazer o pedido diretamente.
+          </p>
+        </div>
+        <div class="hub-card-action">
+          <span>Abrir Menu do Cliente</span>
+          <span>➔</span>
+        </div>
+      </a>
+
+      <!-- Card 2: Site da Cozinha (Ecrã KDS) -->
+      <a href="cozinha.html" class="hub-card" style="border-top:4px solid #ea580c">
+        <div>
+          <div class="hub-card-icon">👨‍🍳</div>
+          <h2 class="hub-card-title">2. Site da Cozinha (Ecrã de Pedidos)</h2>
+          <p class="hub-card-desc">
+            O site para onde chegam os pedidos em tempo real. Ecrã para tablet/monitor na cozinha com som de campainha 🔔, identificação da mesa e controlo do estado de preparação.
+          </p>
+        </div>
+        <div class="hub-card-action" style="color:#fb923c">
+          <span>Abrir Ecrã da Cozinha</span>
+          <span>➔</span>
+        </div>
+      </a>
+
+      <!-- Card 3: Gerador de QR Codes -->
+      <a href="qrcodes.html" class="hub-card" style="border-top:4px solid #10b981">
+        <div>
+          <div class="hub-card-icon">🖨️</div>
+          <h2 class="hub-card-title">3. Gerador de QR Codes de Mesa</h2>
+          <p class="hub-card-desc">
+            Gera os QR Codes para as mesas (1 a 24) com expositor / cavalete de mesa pronto para impressão e download de imagens em alta resolução.
+          </p>
+        </div>
+        <div class="hub-card-action" style="color:#34d399">
+          <span>Gerar e Imprimir QR Codes</span>
+          <span>➔</span>
+        </div>
+      </a>
+
+      <!-- Card 4: Back Office e Gestão -->
+      <a href="admin.html" class="hub-card" style="border-top:4px solid #3b82f6">
+        <div>
+          <div class="hub-card-icon">📊</div>
+          <h2 class="hub-card-title">4. Painel de Gestão & Stock</h2>
+          <p class="hub-card-desc">
+            Back office para gerir a ementa, marcar pratos como esgotados no momento e consultar o total de faturação e pedidos do dia.
+          </p>
+        </div>
+        <div class="hub-card-action" style="color:#60a5fa">
+          <span>Aceder ao Back Office</span>
+          <span>➔</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

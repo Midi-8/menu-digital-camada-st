@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back Office & Gestão • Camada Santo Tirso</title>
+  <meta name="description" content="Painel de administração, gestão de ementa e histórico de vendas do restaurante Camada Santo Tirso.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+
+  <!-- Top System Navigation Bar -->
+  <header class="system-nav-bar">
+    <a href="admin.html" class="brand-wrapper">
+      <div class="brand-badge" style="background:linear-gradient(135deg, #3b82f6, #1d4ed8);color:#fff">ADM</div>
+      <div class="brand-info">
+        <span class="brand-title">Back Office Camada</span>
+        <span class="brand-city">Gestão & Vendas • Santo Tirso</span>
+      </div>
+    </a>
+
+    <!-- View Mode Switcher -->
+    <nav class="view-switcher" aria-label="Modo de Visualização">
+      <a href="index.html" class="view-btn" title="Menu do Cliente">
+        <span>📱 Menu</span>
+      </a>
+      <a href="kds.html" class="view-btn" title="Ecrã da Cozinha">
+        <span>🍳 Cozinha</span>
+      </a>
+      <a href="qrcodes.html" class="view-btn" title="Gerar QR Codes">
+        <span>🖨️ QR Codes</span>
+      </a>
+      <a href="admin.html" class="view-btn active" title="Backoffice & Gestão">
+        <span>📊 Gestão</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="admin-container">
+
+    <!-- Metrics Cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem;margin-bottom:1.75rem">
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.25rem">
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700">Faturação Estimada Hoje</div>
+        <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--primary);margin-top:0.25rem" id="adminTotalSales">0.00€</div>
+      </div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.25rem">
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700">Total de Pedidos Recebidos</div>
+        <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:#fff;margin-top:0.25rem" id="adminTotalOrders">0</div>
+      </div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.25rem">
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:700">Prato Mais Vendido</div>
+        <div style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:#fff;margin-top:0.4rem" id="adminTopDish">—</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Menu & Stock Management -->
+    <div style="margin-bottom:2.5rem">
+      <div class="admin-header">
+        <div>
+          <h2 style="font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:#fff">Gestão de Ementa & Disponibilidade</h2>
+          <p style="font-size:0.83rem;color:var(--text-muted)">
+            Ative ou desative itens conforme o stock da cozinha. Mudanças refletem-se instantaneamente no telemóvel dos clientes.
+          </p>
+        </div>
+        <button class="btn-secondary-sm" id="resetMenuBtn">
+          <span>🔄</span> Repor Ementa Padrão
+        </button>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Prato</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th style="text-align:center">Estado / Stock</th>
+            </tr>
+          </thead>
+          <tbody id="adminMenuTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: Orders History -->
+    <div>
+      <div class="admin-header">
+        <div>
+          <h2 style="font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:#fff">Histórico de Pedidos</h2>
+          <p style="font-size:0.83rem;color:var(--text-muted)">
+            Registo detalhado de todos os pedidos efetuados por mesa.
+          </p>
+        </div>
+        <button class="btn-secondary-sm" id="adminClearAllOrdersBtn">
+          <span>🗑️</span> Limpar Histórico
+        </button>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nº Pedido</th>
+              <th>Mesa</th>
+              <th>Itens</th>
+              <th>Total</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersHistoryBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/admin.js"></script>
+
+</body>
+</html>

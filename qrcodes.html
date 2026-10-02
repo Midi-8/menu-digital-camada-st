@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Codes de Mesa • Camada Santo Tirso</title>
+  <meta name="description" content="Gere e imprima QR codes personalizados para cada mesa do restaurante Camada em Santo Tirso.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/camada-logo.png">
+</head>
+<body>
+
+  <!-- Top System Navigation Bar -->
+  <header class="system-nav-bar">
+    <div class="brand-wrapper">
+      <img src="assets/images/camada-logo.png" alt="Camada" class="brand-logo-img">
+      <div class="brand-info">
+        <span class="brand-title">Camada</span>
+        <span class="brand-city">QR Codes de Mesa</span>
+      </div>
+    </div>
+
+    <!-- View Mode Switcher -->
+    <nav class="view-switcher" aria-label="Navegação">
+      <a href="menu.html" class="view-btn" title="Menu do Cliente">Menu</a>
+      <a href="cozinha.html" class="view-btn" title="Ecrã da Cozinha">Cozinha</a>
+      <a href="qrcodes.html" class="view-btn active" title="Gerar QR Codes">QR Codes</a>
+      <a href="admin.html" class="view-btn" title="Backoffice">Gestão</a>
+    </nav>
+  </header>
+
+  <main class="qr-view-layout">
+
+    <div class="qr-generator-grid">
+      <!-- Control Panel (Left) -->
+      <div class="qr-control-panel">
+        <h2 class="panel-title">Gerar QR Code por mesa</h2>
+        <p class="panel-desc">
+          Selecione a mesa para gerar o QR Code correspondente. Cada código abre a ementa com a mesa identificada.
+        </p>
+
+        <!-- Table Grid Selector -->
+        <div class="form-group">
+          <label class="form-label">Mesa (1 a 24):</label>
+          <div class="tables-selector-grid" id="qrTablesGrid"></div>
+        </div>
+
+        <!-- Base URL Config -->
+        <div class="form-group">
+          <label class="form-label">Endereço Web / URL Base:</label>
+          <input type="text" class="form-input" id="customBaseUrlInput" placeholder="http://...">
+          <div style="font-size:0.75rem;color:var(--text-tertiary);margin-top:4px">
+            Se estiver em teste de rede Wi-Fi local, pode colocar o IP da máquina (ex: <code>http://192.168.1.100:8080/menu.html</code>).
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:1.5rem">
+          <button class="btn-primary-block" id="downloadQrBtn" style="justify-content:center">
+            <span>Descarregar imagem (PNG)</span>
+          </button>
+          
+          <div style="display:flex;gap:0.6rem">
+            <button class="btn-secondary-sm" id="printStandBtn" style="flex:1;justify-content:center;padding:0.65rem">
+              <span>Imprimir mesa atual</span>
+            </button>
+            <button class="btn-secondary-sm" id="printAllStandsBtn" style="flex:1;justify-content:center;padding:0.65rem">
+              <span>Imprimir todas (1 a 24)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Printable Table Tent Stand Preview (Right) -->
+      <div>
+        <div style="font-size:0.75rem;color:var(--text-tertiary);text-transform:uppercase;font-weight:700;margin-bottom:0.6rem;text-align:center">
+          Expositor de mesa para impressão
+        </div>
+
+        <div class="printable-stand-preview" id="printableStandContainer">
+          <img src="assets/images/camada-logo.png" alt="Camada" class="stand-logo-badge">
+          <div class="stand-brand">CAMADA</div>
+          <div class="stand-city">SANTO TIRSO</div>
+
+          <div class="stand-table-badge" id="standTableBadge">MESA 1</div>
+
+          <div class="stand-qr-box" id="qrCodeContainer">
+            <!-- QRCode Canvas -->
+          </div>
+
+          <div class="stand-instruction">Aponte a câmara do telemóvel</div>
+          <div class="stand-subtext">Consulte a ementa e envie o seu pedido à cozinha</div>
+
+          <div style="margin-top:1.25rem;font-size:0.68rem;color:#8c98a9;word-break:break-all" id="standUrlPreview">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="assets/js/qrcode.min.js"></script>
+  <script src="assets/js/qr-manager.js"></script>
+
+</body>
+</html>
